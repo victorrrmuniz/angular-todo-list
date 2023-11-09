@@ -1,1 +1,24 @@
-<p>works!</p>
+<div class="main-container">
+    <div class="title-container">
+        <h1>Todo List</h1>
+    </div>
+
+    <div class="form-container">
+        <form (submit)="$event.preventDefault()">
+            <mat-form-field>
+                <mat-label>Insert a new todo</mat-label>
+                <input matInput #todo />
+            </mat-form-field>  
+            <button mat-button color="primary" (click)="addTodo(todo)">Insert</button>         
+        </form>
+    </div>
+
+    <div class="todo-list-container">
+        @for (item of todoList; track $index) {
+            <div class="todo-item-container">
+                <span>{{ item.id }}</span>
+                <span>{{ item.description }}</span>
+            </div>
+        }
+    </div>
+</div>

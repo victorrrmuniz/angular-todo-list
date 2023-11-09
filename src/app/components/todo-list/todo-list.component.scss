@@ -1,0 +1,51 @@
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 80px;
+    gap: 32px;
+}
+
+.title-container {
+    margin-top: 32px;
+    h1 {
+        text-align: center;
+        font-size: 60px;
+        font-weight: bolder;
+        text-decoration: underline;
+    }
+}
+
+.form-container {
+    margin-top: 32px;
+    form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+
+        mat-form-field {
+            flex: 4;
+        }
+
+        button {
+            flex: 1;
+            height: 56px;
+        }
+    }
+}
+
+.todo-item-container {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    padding: 24px 0;
+    color: #121212;
+    border-bottom: solid 1px #afafaf;
+    font-size: 18px;
+    font-weight: 500;
+
+    span:nth-child(2) {
+        flex: 1;
+    }
+}
