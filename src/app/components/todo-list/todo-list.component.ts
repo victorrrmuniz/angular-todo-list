@@ -14,17 +14,7 @@ import { TodoItem } from '../../models/TodoItem';
 })
 export class TodoListComponent {
 
-  todoList: TodoItem[] = [
-    {
-      id: 1,
-      description: "teste"
-    },
-    {
-      id: 2,
-      description: "teste 2"
-    }
-  ];
-
+  todoList: TodoItem[] = [];
 
   addTodo(todo: HTMLInputElement) {
     const newTodo: TodoItem = {
