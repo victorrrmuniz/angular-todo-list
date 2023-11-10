@@ -4,13 +4,16 @@
     </div>
 
     <div class="form-container">
-        <form (submit)="$event.preventDefault()">
+        <form [formGroup]="todoForm" #formDirective="ngForm" (submit)="addTodo(formDirective)">
             <mat-form-field>
                 <mat-label>Insert a new todo</mat-label>
-                <input matInput #todo />
+                <input matInput formControlName="todo" />
             </mat-form-field>  
-            <button mat-raised-button color="primary" (click)="addTodo(todo)">Insert</button>         
+            <button mat-raised-button color="primary" type="submit">Insert</button>         
         </form>
+        @if (!todoForm.valid && todoForm.get('todo')?.touched) {
+            <span>O campo não pode estar vazio</span>
+        }
     </div>
 
     <div class="todo-list-container">
