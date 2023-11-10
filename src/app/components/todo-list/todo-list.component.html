@@ -21,6 +21,7 @@
             <div class="todo-item-container">
                 <span>{{ item.id }}</span>
                 <span>{{ item.description }}</span>
+                <span><mat-icon (click)="done(item)">done</mat-icon></span>
             </div>
         }
     </div>
