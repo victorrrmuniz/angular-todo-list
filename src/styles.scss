@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 body { 
-    background-color: rgb(24, 24, 24);
+    background-color: rgb(31, 17, 31);
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.confirm-dialog {
+        .mat-mdc-dialog-container
+        .mdc-dialog__container
+        .mat-mdc-dialog-surface {
+            background-color: rgb(24, 24, 24);
+    }   
 }

@@ -4,8 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { TodoItem } from '../../models/TodoItem';
 import { FormBuilder, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ConfirmTodoComponent } from '../dialogs/confirm-todo.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -24,19 +26,12 @@ import { FormBuilder, FormGroup, FormGroupDirective, FormsModule, ReactiveFormsM
 })
 export class TodoListComponent {
 
-  todoList: TodoItem[] = [
-    {
-      id: 1,
-      description: 'teste'
-    },
-    {
-      id: 2,
-      description: 'teste 2'
-    }
-  ];
+  todoList: TodoItem[] = [];
   todoForm!: FormGroup;
+  taskId: number = 1;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private dialog: MatDialog) {
     this.todoForm = this.fb.group({
       todo: ['', Validators.required]
     });
@@ -45,7 +40,7 @@ export class TodoListComponent {
   addTodo(formDirective: FormGroupDirective) {
     if (this.todoForm.valid) {
       const newTodo: TodoItem = {
-        id: this.todoList.length + 1,
+        id: this.taskId++,
         description: this.todoForm.get('todo')?.value
       };
   
@@ -62,6 +57,13 @@ export class TodoListComponent {
   }
 
   done(item: TodoItem) {
-    this.todoList = this.todoList.filter(todo => todo != item);
+    const dialogRef = this.dialog.open(ConfirmTodoComponent, { panelClass: 'confirm-dialog' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true)
+        this.todoList = this.todoList.filter(todo => todo != item);
+    });
+
+    
   }
 }
